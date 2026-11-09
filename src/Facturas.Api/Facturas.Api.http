@@ -1,0 +1,41 @@
+@Facturas.Api_HostAddress = http://localhost:5000
+
+### Búsqueda paginada (facturas vencidas)
+GET {{Facturas.Api_HostAddress}}/api/invoices?paymentStatus=Overdue&page=1&pageSize=10
+Accept: application/json
+
+### Búsqueda por número
+GET {{Facturas.Api_HostAddress}}/api/invoices?number=41
+Accept: application/json
+
+### Detalle de una factura inconsistente
+GET {{Facturas.Api_HostAddress}}/api/invoices/41
+Accept: application/json
+
+### Agregar una nota de crédito
+POST {{Facturas.Api_HostAddress}}/api/invoices/1/credit-notes
+Content-Type: application/json
+
+{
+  "amount": 1000
+}
+
+### Reejecutar la importación (idempotente)
+POST {{Facturas.Api_HostAddress}}/api/invoices/import
+Accept: application/json
+
+### Reportes
+GET {{Facturas.Api_HostAddress}}/api/reports/payment-summary
+Accept: application/json
+
+###
+GET {{Facturas.Api_HostAddress}}/api/reports/overdue-without-payment-or-credit
+Accept: application/json
+
+###
+GET {{Facturas.Api_HostAddress}}/api/reports/inconsistent-invoices
+Accept: application/json
+
+### Health check
+GET {{Facturas.Api_HostAddress}}/health
+Accept: application/json
