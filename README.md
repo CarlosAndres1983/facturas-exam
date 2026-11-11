@@ -10,6 +10,34 @@ en una base SQLite y consultar reportes de cobranza e inconsistencias.
 
 ---
 
+## Inicio rápido
+
+Requisitos: [.NET SDK 8.0+](https://dotnet.microsoft.com/download/dotnet/8.0) y
+[Node.js 20.19+ o 22.12+](https://nodejs.org/).
+
+```bash
+git clone https://github.com/CarlosAndres1983/facturas-exam.git
+cd facturas-exam
+dotnet run --project src/Facturas.Api
+```
+
+En otra terminal, desde la raíz del repositorio:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Abrir **http://localhost:5173**. La base SQLite se crea sola, las vistas se crean
+solas y el archivo `bd_exam.json` se importa automáticamente. No hay pasos manuales
+de base de datos.
+
+- API: **http://localhost:5000**
+- Swagger: **http://localhost:5000/swagger**
+
+---
+
 ## 1. Arquitectura
 
 El backend está separado en capas con dependencias hacia adentro:
@@ -56,7 +84,7 @@ facturas-exam/
 
 - [.NET SDK 8.0](https://dotnet.microsoft.com/download/dotnet/8.0) o superior
   (el proyecto apunta a `net8.0`; el SDK 9 también compila).
-- [Node.js 20+](https://nodejs.org/) y npm.
+- [Node.js 20.19+ o 22.12+](https://nodejs.org/) y npm (lo exige Vite 8).
 - No se necesita instalar SQLite: el proveedor `Microsoft.Data.Sqlite` viene en el proyecto.
 
 ---
@@ -302,3 +330,4 @@ Resultados de referencia con los datos actuales:
 - Concurrencia optimista al agregar NC simultáneas.
 - Docker Compose para backend + frontend.
 - Exportación de reportes a CSV/PDF.
+
